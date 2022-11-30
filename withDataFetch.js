@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-import useAlert from 'hooks/useAlert';
 import axios from 'axios';
 
 /**
@@ -42,13 +41,9 @@ export const withDataFetch = (WrappedComponent) => {
 				const transformedData = (afterFetch && afterFetch(response.data)) || response.data;
 
 				this.setState({ data: transformedData, loading: false, error: null, success: successMessage });
-				successMessage && showSuccess({ header: 'success', message: successMessage });
+				
 			} catch (error) {
 				console.log(error);
-				showError({
-					header: 'error',
-					message: errorMessage
-				});
 				this.setState({ error: errorMessage, loading: false });
 			}
 		};
